@@ -1,0 +1,23 @@
+#card {
+    height: 140px;
+    width: 140px;
+    left: 30px;
+    top: 30px;
+    background-color: black;
+    position: absolute;
+    transition: transform 75ms linear;
+}
+
+.tilt_left {
+    transform: rotate(-25deg);
+    transform-origin: bottom right;
+}
+
+.tilt_right {
+    transform: rotate(25deg);
+    transform-origin: bottom left;
+}
+
+.tiltback {
+    transform: rotate(0deg);
+}
