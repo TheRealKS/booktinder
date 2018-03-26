@@ -1,11 +1,9 @@
 #card {
-    height: 140px;
-    width: 140px;
-    left: 30px;
-    top: 30px;
-    background-color: black;
+    height: 75%;
+    width: 90%;
     position: absolute;
     transition: transform 75ms linear;
+    border-radius: 10px;
 }
 
 .tilt_left {
@@ -20,4 +18,41 @@
 
 .tiltback {
     transform: rotate(0deg);
+}
+
+.header {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    height: 90%;
+}
+
+.footer {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    height: 2.5em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position:absolute;
+    bottom:0;
+    left: 0;
+    right: 0;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 15px;
+}
+
+.bookimage {
+    height: 75%;
+    width: 90%;
+
 }

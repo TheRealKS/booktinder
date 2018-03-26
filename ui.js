@@ -21,13 +21,16 @@ function calculateTresholds() {
     var height = window.innerHeight ||
         document.documentElement.clientHeight ||
         document.body.clientHeight;
-    rightTiltTreshold = width - leftTiltTreshold - 250;
-    rightTreshold = width - leftTreshold;
+    leftTiltTreshold = (width / -2) + 20;
+    leftTreshold = (width / -2) + 10;
+    rightTiltTreshold = (width / 2) - 20;
+    rightTreshold = (width / 2) - 10;
     console.log(rightTiltTreshold);
 }
 
 var lastX = 0;
 var lastY = 0;
+let highestVelocity = 0;
 var isDragging = false;
 
 function HandleDrag(event) {
@@ -39,8 +42,8 @@ function HandleDrag(event) {
         lastX = element.offsetLeft;
         lastY = element.offsetTop;
     }
-    let eX = (event.deltaX + lastX) * 2;
-    let eY = (event.deltaY + lastY) * 2;
+    let eX = (event.deltaX + lastX);
+    let eY = (event.deltaY + lastY);
     //TODO: add treshold;
     //Move card to new position
     if (eX <= leftTiltTreshold) {
@@ -53,25 +56,30 @@ function HandleDrag(event) {
             element.className = "tilt_right";
             tilted = true;
         }
-    } else if (eX <= leftTreshold) {
-        dismissCard();
     } else if (eX >= leftTiltTreshold || eX <= rightTiltTreshold) {
         if (tilted) {
             element.className = "tiltback";
             tilted = false;
         }
     }
+    let velX = event.velocityX;
+    if (velX > highestVelocity) {
+        highestVelocity = velX;
+        document.getElementById("velocity").innerHTML = velX;
+    }
+    document.getElementById("velocity").innerHTML = event.velocity;
     element.style.left = eX + "px";
     element.style.top = eY + "px";
 
     if (event.isFinal) {
         isDragging = false;
-        //element.style.left = "140px";
-        //element.style.top = "140px";
+        
     }
 }
 
 function dismissCard() {
     console.log("loll");
     element.style.display = "none";
+    //TODO: animation
+
 }
