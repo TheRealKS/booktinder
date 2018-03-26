@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 #card {
     height: 75%;
     width: 90%;
@@ -38,8 +42,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    position:absolute;
-    bottom:0;
+    position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
 }
@@ -54,5 +58,4 @@
 .bookimage {
     height: 75%;
     width: 90%;
-
 }
