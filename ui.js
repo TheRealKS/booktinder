@@ -7,13 +7,19 @@ var bottomTreshold = 0;
 var tilted = false;
 var element;
 var width, height;
+var CardPanRecognizer;
+var current = 5;
 docReady(function() {
     calculateTresholds();
     element = document.getElementById("card");
-    var CardPanRecognizer = new Hammer(element);
+    initEvent();
+});
+
+function initEvent() {
+    CardPanRecognizer = new Hammer(element);
     CardPanRecognizer.add(new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, treshold: 0 }));
     CardPanRecognizer.on("pan", HandleDrag);
-});
+}
 
 function calculateTresholds() {
     width = window.innerWidth ||
@@ -29,7 +35,7 @@ function calculateTresholds() {
     topTreshold = document.getElementById("header").style.bottom;
     bottomTreshold = height - document.getElementById("footer").style.height;
     console.log(rightTiltTreshold);
-    alert(width / 4 + " ; " + -width / 4);
+    //alert(width / 4 + " ; " + -width / 4);
 }
 
 var lastX = 0;
@@ -83,9 +89,9 @@ function HandleDrag(event) {
         if (event.direction !== Hammer.DIRECTION_VERTICAL) {
             if (event.velocity > -1 || event.velocity < 1) {
                 if (event.deltaX > width / 4 && event.velocity > 1) {
-                    dismissCard();
+                    dismissCard(Hammer.DIRECTION_RIGHT); //like
                 } else if (event.deltaX < -width / 4 && event.velocity < -1) {
-                    dismissCard();
+                    dismissCard(Hammer.DIRECTION_LEFT); //dislike
                 }
             } else {
                 dismissCard();
@@ -94,9 +100,22 @@ function HandleDrag(event) {
     }
 }
 
-function dismissCard() {
+function dismissCard(direction) {
     console.log("loll");
     element.style.display = "none";
-    //TODO: animation
+    delete element;
+    //Transmit the choice.
+    //TODO
+    current = -current;
+    createNewCard("Bordewijk" + current + ".jpg");
+}
 
+function createNewCard(img) {
+    element = document.createElement("img");
+    element.classList.add("bookimage");
+    element.id = "card";
+    //Reset touch-action response to respond to new element
+    element.src = img;
+    initEvent();
+    document.getElementsByClassName("content")[0].appendChild(element);
 }
