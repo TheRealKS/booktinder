@@ -7,7 +7,7 @@ var bottomTreshold = 0;
 var tilted = false;
 var element;
 var width, height;
-var CardPanRecognizer;
+var CardPanRecognizer, CardTapRecognizer;
 var current = 5;
 docReady(function() {
     calculateTresholds();
@@ -19,6 +19,9 @@ function initEvent() {
     CardPanRecognizer = new Hammer(element);
     CardPanRecognizer.add(new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, treshold: 0 }));
     CardPanRecognizer.on("pan", HandleDrag);
+    CardTapRecognizer = new Hammer(element);
+    CardTapRecognizer.add(new Hammer.Tap());
+    CardTapRecognizer.on("tap", HandleTap);
 }
 
 function calculateTresholds() {
@@ -75,7 +78,8 @@ function HandleDrag(event) {
         }
     }
 
-    if (eY <= topTreshold || eY >= bottomTreshold) { /*Botom/toptreshold*/ } else {
+    let Y = element.style.bottom;
+    if (eY <= topTreshold || Y >= bottomTreshold) { /*Botom/toptreshold*/ } else {
         element.style.left = eX + "px";
         element.style.top = eY + "px";
     }
@@ -83,8 +87,6 @@ function HandleDrag(event) {
     if (event.isFinal) {
         console.log(event.deltaX);
         console.log(event.velocity);
-        document.getElementById("velocity").innerHTML = event.velocity;
-        document.getElementById("velocity").innerHTML += " ; " + event.deltaX;
         isDragging = false;
         if (event.direction !== Hammer.DIRECTION_VERTICAL) {
             if (event.velocity > -1 || event.velocity < 1) {
@@ -105,9 +107,12 @@ function dismissCard(direction) {
     element.style.display = "none";
     delete element;
     //Transmit the choice.
+
     //TODO
     current = -current;
-    createNewCard("Bordewijk" + current + ".jpg");
+    setTimeout(function() {
+        createNewCard("Bordewijk" + current + ".jpg");
+    }, 200);
 }
 
 function createNewCard(img) {
@@ -118,4 +123,27 @@ function createNewCard(img) {
     element.src = img;
     initEvent();
     document.getElementsByClassName("content")[0].appendChild(element);
+}
+
+//SECTION: cycling images of the book
+
+function HandleTap(event) {
+    let location = event.center;
+    //We need to check what side of the image was tapped
+    let half = width / 2;
+    if (location.x > half) {
+        //right
+        nextImage();
+    } else {
+        //left
+        previousImage();
+    }
+}
+
+function nextImage() {
+    //Images to be stored in current object
+    
+}
+
+function previousImage() {
 }

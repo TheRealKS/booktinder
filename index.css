@@ -2,12 +2,27 @@ body {
     overflow: hidden;
 }
 
+@media screen and (max-width: 430px) {
 #card {
-    height: 75%;
+    display: block;
+    max-width: 90%;
+    max-height: 75%;
     width: 90%;
+    height: auto;
     position: absolute;
     transition: transform 75ms ease-in-out;
     border-radius: 10px;
+}
+}
+@media screen and (min-width: 430px) {
+#card {
+    display: block;
+    height: 90%;
+    width: auto;
+    position: absolute;
+    transition: transform 75ms ease-in-out;
+    border-radius: 10px;
+}
 }
 
 .tilt_left {
@@ -53,11 +68,15 @@ body {
     justify-content: center;
     align-content: center;
     padding-top: 15px;
+    overflow: hidden;
 }
 
 .bookimage {
-    height: 75%;
-    width: 90%;
+    display: block;
+    max-width: 90%;
+    max-height: 75%;
+    width: auto;
+    height: auto;
     -webkit-animation-delay: 0s;
     -webkit-animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     -webkit-transform: translateZ(0);

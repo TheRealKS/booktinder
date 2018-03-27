@@ -11,5 +11,8 @@ function connect() {
     ws.onclose(function(event) {
 
     });
-    w
+}
+
+function transmitChoice(choice) {
+    ws.send(JSON.stringify(choice));
 }
