@@ -20,8 +20,10 @@
         private function resolveData($title, $author) {
             $file = $BASEDATAPATH . $title . "_" . $author;
             if (file_exists($file)) {
-                $rawbio = file_get_contents($file . "/bio.json");
-                $this->bio = json_decode($rawbio);
+                $rawbio = file_get_contents($file . "/data.json");
+                $b = json_decode($rawbio);
+                $this->author = $b->author;
+                $this->bio = $b->bio;
                 $images = scandir($file . "/images");
                 unset($images[0]);
                 unset($images[1]);

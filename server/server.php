@@ -3,8 +3,8 @@
     
     class Server extends WebSocketServer {
 
-        protected $users = [];
-        protected $data = [];
+        public $users = [];
+        public $data = [];
         
         protected function process($user, $message) {
             $json = json_decode($message);
@@ -25,8 +25,8 @@
         protected function connected($user) {
             $this->stdout("Connection id: " . $user->id);
             //Register the new user
-            if (!array_key_exists($user->id, $users)) {
-                $users[$user->id] = $user;
+            if (!array_key_exists($user->id, $this->users)) {
+                $this->users[$user->id] = $user;
             }
         }
 
@@ -53,7 +53,7 @@
         }
     }
 
-    $s = new TestServer("0.0.0.0", "6848");
+    $s = new Server("0.0.0.0", "6848");
 
     try {
         $s->run();
