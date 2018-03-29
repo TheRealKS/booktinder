@@ -50,6 +50,7 @@
             } else {
                 $this->stderr("Data folder not found!");
             }
+            var_dump($this->data);
         }
     }
 

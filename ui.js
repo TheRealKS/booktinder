@@ -8,6 +8,7 @@ var tilted = false;
 var element;
 var width, height;
 var CardPanRecognizer, CardTapRecognizer;
+var FooterSwipeRecognizer;
 var current = 5;
 docReady(function() {
     calculateTresholds();
@@ -22,6 +23,10 @@ function initEvent() {
     CardTapRecognizer = new Hammer(element);
     CardTapRecognizer.add(new Hammer.Tap());
     CardTapRecognizer.on("tap", HandleTap);
+
+    FooterSwipeRecognizer = new Hammer(document.getElementById("footer"));
+    FooterSwipeRecognizer.add(new Hammer.Swipe({direction: Hammer.DIRECTION_VERTICAL}));
+    FooterSwipeRecognizer.on("swipe", HandleSwipe);
 }
 
 function calculateTresholds() {
@@ -146,4 +151,18 @@ function nextImage() {
 }
 
 function previousImage() {
+}
+
+//SECTION: footer swipe for bio
+
+function HandleSwipe(event) {
+    var footer = document.getElementById("footer");
+    console.log(event.direction);
+    if (event.direction == Hammer.DIRECTION_UP) {
+        console.log("up");
+        footer.style.height = "80%";
+    } else {
+        console.log("down");    
+        footer.style.height = "20%";
+    }
 }
