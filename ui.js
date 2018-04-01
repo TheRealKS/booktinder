@@ -9,11 +9,13 @@ var element;
 var width, height;
 var CardPanRecognizer, CardTapRecognizer;
 var FooterSwipeRecognizer;
-var current = 5;
+var currentcard, currentimage, numberofimages;
 docReady(function() {
+    var spinner = new Spinner().spin();
+    var target = document.getElementsByClassName("content")[0];
+    target.appendChild(spinner.el);
     calculateTresholds();
-    element = document.getElementById("card");
-    initEvent();
+    preload();
 });
 
 function initEvent() {
@@ -113,20 +115,45 @@ function dismissCard(direction) {
     delete element;
     //Transmit the choice.
 
-    //TODO
-    current = -current;
-    setTimeout(function() {
-        createNewCard("Bordewijk" + current + ".jpg");
-    }, 200);
+    if (current < numberofbooks) {
+        current++;
+        currentcard = data[current];
+        setTimeout(function() {
+            createNewCard(false);
+        }, 200);
+    } else {
+        setTimeout(createLastCard, 200);
+    }
 }
 
-function createNewCard(img) {
+function createNewCard(first) {
+    var coverimageurl = currentcard.path + "/images/1.jpg";
     element = document.createElement("img");
     element.classList.add("bookimage");
     element.id = "card";
     //Reset touch-action response to respond to new element
-    element.src = img;
+    element.src = coverimageurl;
+    var images = currentcard.images;
+    for (var image of images) {
+        var el = new Image;
+        el.src = currentcard.path + "/images/" + image;
+    }
+    currentimage = 1;
+    numberofimages = images.length;
+    console.log(numberofimages);
     initEvent();
+    var holder = document.getElementsByClassName("content")[0];
+    if (first) {
+        holder.innerHTML = "";
+    }
+    holder.appendChild(element);
+}
+
+function createLastCard() {
+    element = document.createElement("img");
+    element.classList.add("bookimage");
+    element.id = "card";
+    element.src = "empty.jpg";
     document.getElementsByClassName("content")[0].appendChild(element);
 }
 
@@ -147,10 +174,27 @@ function HandleTap(event) {
 
 function nextImage() {
     //Images to be stored in current object
-    
+    if (currentimage < numberofimages) {
+        //Next image
+        currentimage++;
+        element.src = currentcard.path + "/images/" + currentimage + ".jpg";  
+    } else {
+        //First image
+        currentimage = 1;
+        element.src = currentcard.path + "/images/1.jpg";
+    }
 }
 
 function previousImage() {
+    if (currentimage > 1) {
+        //Previous image
+        currentimage--;
+        element.src = currentcard.path + "/images/" + currentimage + ".jpg";
+    } else {
+        //Last image
+        currentimage = numberofimages;
+        element.src = currentcard.path + "/images/" + numberofimages + ".jpg"; 
+    }
 }
 
 //SECTION: footer swipe for bio

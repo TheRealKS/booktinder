@@ -40,6 +40,7 @@
             $datapath = "../data";
             if (file_exists($datapath)) {
                 $files = scandir($datapath);
+                var_dump($files);
                 $c = count($files);
                 for ($i = 3; $i < $c; $i++) {
                     $filename = $files[$i];
