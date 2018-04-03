@@ -8,7 +8,8 @@ var tilted = false;
 var element;
 var width, height;
 var CardPanRecognizer, CardTapRecognizer;
-var FooterSwipeRecognizer;
+var FooterTapRecognizer;
+var footerup = false, footertoggle, footertoggletopmargin;
 var currentcard, currentimage, numberofimages;
 docReady(function() {
     var spinner = new Spinner().spin();
@@ -16,6 +17,8 @@ docReady(function() {
     target.appendChild(spinner.el);
     calculateTresholds();
     preload();
+    footertoggle = document.getElementById("toggleimg");
+    footertoggletopmargin = footer.style.top - footertoggle.style.top;
 });
 
 function initEvent() {
@@ -26,9 +29,9 @@ function initEvent() {
     CardTapRecognizer.add(new Hammer.Tap());
     CardTapRecognizer.on("tap", HandleTap);
 
-    FooterSwipeRecognizer = new Hammer(document.getElementById("footer"));
-    FooterSwipeRecognizer.add(new Hammer.Swipe({direction: Hammer.DIRECTION_VERTICAL}));
-    FooterSwipeRecognizer.on("swipe", HandleSwipe);
+    FooterTapRecognizer = new Hammer(document.getElementById("footer"));
+    FooterTapRecognizer.add(new Hammer.Tap());
+    FooterTapRecognizer.on("tap", HandleSwipe);
 }
 
 function calculateTresholds() {
@@ -142,6 +145,9 @@ function createNewCard(first) {
     numberofimages = images.length;
     console.log(numberofimages);
     initEvent();
+    var spans = document.getElementsByTagName("span"); //Only two
+    spans[0].innerHTML = currentcard.title;
+    spans[1].innerHTML = currentcard.author;
     var holder = document.getElementsByClassName("content")[0];
     if (first) {
         holder.innerHTML = "";
@@ -155,6 +161,7 @@ function createLastCard() {
     element.id = "card";
     element.src = "empty.jpg";
     document.getElementsByClassName("content")[0].appendChild(element);
+    document.getElementById("footer").innerHTML = "";
 }
 
 //SECTION: cycling images of the book
@@ -201,12 +208,29 @@ function previousImage() {
 
 function HandleSwipe(event) {
     var footer = document.getElementById("footer");
-    console.log(event.direction);
-    if (event.direction == Hammer.DIRECTION_UP) {
+    var bttn = document.getElementById("togglebttn");
+    var container = document.getElementById("infocontainer");
+    var bttnheight = bttn.offsetHeight;
+    var containerheight = container.offsetHeight;
+    if (!footerup) {
         console.log("up");
         footer.style.height = "80%";
+        bttn.style.height = bttnheight;
+        container.style.height = containerheight;
+        rotateToggle(180);
+        footerup = true;
     } else {
         console.log("down");    
-        footer.style.height = "20%";
+        footer.style.height = "10%";  
+        rotateToggle(0);
+        footerup = false;
     }
+}
+
+function rotateToggle(deg) {
+    footertoggle.style.webkitTransform = 'rotate('+deg+'deg)'; 
+    footertoggle.style.mozTransform    = 'rotate('+deg+'deg)'; 
+    footertoggle.style.msTransform     = 'rotate('+deg+'deg)'; 
+    footertoggle.style.oTransform      = 'rotate('+deg+'deg)'; 
+    footertoggle.style.transform       = 'rotate('+deg+'deg)'; 
 }

@@ -1,0 +1,15 @@
+.superholder {
+    margin-right: 5%;
+    margin-left: 5%;
+    display: flex;
+	flex-wrap: wrap;
+}
+
+.topholder {
+    flex: 1 0 200px;
+    box-sizing: border-box;
+    background: #e0ddd5;
+    color: #171e42;
+	margin-left: 10px;
+	margin-top: 10px;
+}

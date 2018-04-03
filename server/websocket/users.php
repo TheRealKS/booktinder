@@ -9,6 +9,7 @@ class WebSocketUser {
   public $sendingContinuous = false;
   public $partialMessage = "";
   public $hasSentClose = false;
+  public $choices = array();
   function __construct($id, $socket) {
     $this->id = $id;
     $this->socket = $socket;

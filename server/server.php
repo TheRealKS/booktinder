@@ -14,7 +14,7 @@
                     break;
                 case 'choice':
                     //User made a choice
-                    
+                    array_push($users[$user->id]->choices, $json->choice);
                     break;
                 default:
                     //Nothing...
@@ -36,22 +36,7 @@
         }
 
         protected function started() {
-            //List all available data (books)
-            $datapath = "../data";
-            if (file_exists($datapath)) {
-                $files = scandir($datapath);
-                var_dump($files);
-                $c = count($files);
-                for ($i = 3; $i < $c; $i++) {
-                    $filename = $files[$i];
-                    $parts = explode("_", $filename);
-                    $obj = new DataObject($parts[0], $parts[1], $this);
-                    array_push($this->data, $obj);
-                }
-            } else {
-                $this->stderr("Data folder not found!");
-            }
-            var_dump($this->data);
+            
         }
     }
 

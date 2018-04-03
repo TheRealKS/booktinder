@@ -3,8 +3,11 @@
 <head>
     <title>Tinderinator</title>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
     <script src="spin.js"></script>
     <script src="docready.js"></script>
     <script src="ui.js"></script>
@@ -20,7 +23,11 @@
         
     </div>
     <div class="footer" id="footer">
-        HIER KOMT DE INFORMATIE
+        <div class="buttontoggle" id="togglebttn"><img class="toggleimg" id="toggleimg" src="arrow_up.svg"></div>
+        <div class="infocontainer" id="infocontainer">
+            <span class="title"></span>
+            <span class="author"></span>
+        </div>
     </div>
 </body>
 
