@@ -10,7 +10,11 @@ body {
     width: 90%;
     height: auto;
     position: absolute;
+    -webkit-transition: -webkit-transform 75ms ease-in-out;
+    transition: -webkit-transform 75ms ease-in-out;
+    -o-transition: transform 75ms ease-in-out;
     transition: transform 75ms ease-in-out;
+    transition: transform 75ms ease-in-out, -webkit-transform 75ms ease-in-out;
     border-radius: 10px;
 }
 }
@@ -20,31 +24,50 @@ body {
     height: 90%;
     width: auto;
     position: absolute;
+    -webkit-transition: -webkit-transform 75ms ease-in-out;
+    transition: -webkit-transform 75ms ease-in-out;
+    -o-transition: transform 75ms ease-in-out;
     transition: transform 75ms ease-in-out;
+    transition: transform 75ms ease-in-out, -webkit-transform 75ms ease-in-out;
     border-radius: 10px;
 }
 }
 
 .tilt_left {
-    transform: rotate(-25deg);
-    transform-origin: bottom right;
+    -webkit-transform: rotate(-25deg);
+        -ms-transform: rotate(-25deg);
+            transform: rotate(-25deg);
+    -webkit-transform-origin: bottom right;
+        -ms-transform-origin: bottom right;
+            transform-origin: bottom right;
 }
 
 .tilt_right {
-    transform: rotate(25deg);
-    transform-origin: bottom left;
+    -webkit-transform: rotate(25deg);
+        -ms-transform: rotate(25deg);
+            transform: rotate(25deg);
+    -webkit-transform-origin: bottom left;
+        -ms-transform-origin: bottom left;
+            transform-origin: bottom left;
 }
 
 .tiltback {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
 }
 
 .header {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     height: 10%;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .logo {
@@ -52,27 +75,42 @@ body {
 }
 
 .footer {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     height: 10%;
     width: 100%;
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
-    flex-wrap:wrap;
+    -ms-flex-wrap:wrap;
+        flex-wrap:wrap;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
+    -webkit-transition-property: all;
+    -o-transition-property: all;
     transition-property: all;
-	transition-duration: .5s;
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	-webkit-transition-duration: .5s;
+	     -o-transition-duration: .5s;
+	        transition-duration: .5s;
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+         -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     z-index: 0;
     background-color: #FFF;
     vertical-align: middle;
 }
 
 .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
     padding-top: 15px;
     overflow: hidden;
 }
@@ -91,7 +129,8 @@ body {
     animation-delay: 0s;
     animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform: translateZ(0);
-    animation-duration: 50ms;
+    -webkit-animation-duration: 50ms;
+            animation-duration: 50ms;
     animation-name: pop_image;
 }
 
@@ -137,21 +176,41 @@ body {
 }
 
 .infocontainer {
-    order: 0;
-    flex: 1 50%;
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 50%;
+            flex: 1 50%;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;    
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;    
+    -webkit-box-pack: center;    
+        -ms-flex-pack: center;    
+            justify-content: center;
 }
 
 .buttontoggle {
-    order: 1;
-    flex: 1 50%;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 50%;
+            flex: 1 50%;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .toggleimg {
@@ -161,6 +220,10 @@ body {
     height: auto;
     border-radius: 50%;
     border: 2px solid rgba(0, 0, 0, 0.16); 
-    transition: transform 250ms ease-in-out;
+    -webkit-transition: -webkit-transform 250ms ease-in-out; 
+    transition: -webkit-transform 250ms ease-in-out; 
+    -o-transition: transform 250ms ease-in-out; 
+    transition: transform 250ms ease-in-out; 
+    transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
     margin-left: 75%;
 }
