@@ -236,7 +236,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 1em;
     height: 100%;
-    overflow: scroll;
 }
 
 .bio {
