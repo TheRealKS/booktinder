@@ -1,23 +1,46 @@
-var ws;
 var data;
 var current = 0;
 var numberofbooks;
 function connect() {
     //Connect to the server
-    ws = new WebSocket("localhost:6848");
-    ws.onmessage(function(event) {
-
-    });
-    ws.onopen(function(event) {
-
-    });
-    ws.onclose(function(event) {
-
-    });
+    
 }
 
 function transmitChoice(choice) {
-    ws.send(JSON.stringify(choice));
+    if (choice === Hammer.DIRECTION_RIGHT) {
+        //like
+        var o = {
+            "type": "choice",
+            "book": currentcard.title,
+            "choice": true
+        };
+        o = JSON.stringify(o);
+        fetch("submitChoice.php?data=" + o)
+        .then(function(res) {
+            if (res.ok) {
+                return res.text();
+            }
+        })
+        .then(function(test) {
+            //Something?
+        });
+    } else {
+        var o = {
+            "type": "choice",
+            "book": currentcard.title,
+            "choice": false
+        };
+        o = JSON.stringify(o);
+        fetch("submitChoice.php?data=" + o)
+        .then(function(res) {
+            if (res.ok) {
+                return res.text();
+            }
+        })
+        .then(function(test) {
+            //Something?
+        });
+    }
 }
 
 //SECTION: preload assets: preload books

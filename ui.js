@@ -117,7 +117,7 @@ function dismissCard(direction) {
     element.style.display = "none";
     delete element;
     //Transmit the choice.
-
+    transmitChoice(direction);
     if (current < numberofbooks) {
         current++;
         currentcard = data[current];
@@ -148,6 +148,7 @@ function createNewCard(first) {
     var spans = document.getElementsByTagName("span"); //Only two
     spans[0].innerHTML = currentcard.title;
     spans[1].innerHTML = currentcard.author;
+    document.getElementById("bio").innerHTML = currentcard.bio;
     var holder = document.getElementsByClassName("content")[0];
     if (first) {
         holder.innerHTML = "";

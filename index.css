@@ -100,6 +100,7 @@ body {
     z-index: 0;
     background-color: #FFF;
     vertical-align: middle;
+    overflow: hidden;   
 }
 
 .content {
@@ -226,4 +227,20 @@ body {
     transition: transform 250ms ease-in-out; 
     transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
     margin-left: 75%;
+}
+
+.biocontainer {
+    order: 2;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    height: 100%;
+    overflow: scroll;
+}
+
+.bio {
+    height: 100%;
+    display: block;
+    overflow: scroll;   
 }
